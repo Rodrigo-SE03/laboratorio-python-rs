@@ -13,8 +13,8 @@ running = True
 
 def bin_dec():
     num = input('Digite o número em Binário: ')
-    for n in range(2,10):
-        if str(n) in num:
+    for n in num:
+        if n not in ['0','1']:
             return "Valor inválido"
     cont = 0
     dec = 0
@@ -25,8 +25,8 @@ def bin_dec():
 
 def bin_hex():
     num = input('Digite o número em Binário: ')
-    for n in range(2,10):
-        if str(n) in num:
+    for n in num:
+        if n not in ['0','1']:
             return "Valor inválido"
     cont = 0
     dec = 0
@@ -47,6 +47,9 @@ def bin_hex():
 
 def dec_bin():
     num = int(input('Digite o número em Decimal: '))
+    for n in str(num):
+        if n not in ['0','1','2','3','4','5','6','7','8','9']:
+            return "Valor inválido"
     binario = ''
     while True:
         binario += str(num%2)
@@ -60,6 +63,9 @@ def dec_bin():
 
 def dec_hex():
     num = int(input('Digite o número em Decimal: '))
+    for n in str(num):
+        if n not in ['0','1','2','3','4','5','6','7','8','9']:
+            return "Valor inválido"
     dec = num
     hexa = ''
     while True:
@@ -75,6 +81,10 @@ def dec_hex():
 
 def hex_bin():
     num = input('Digite o número em Hexadecimal: ')
+    num = num.upper()
+    for n in num:
+        if n not in ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F']:
+            return "Valor inválido"
     dec = 0
     cont = 0
     for d in num[::-1]:
@@ -93,6 +103,10 @@ def hex_bin():
 
 def hex_dec():
     num = input('Digite o número em Hexadecimal: ')
+    num = num.upper()
+    for n in num:
+        if n not in ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F']:
+            return "Valor inválido"
     dec = 0
     cont = 0
     for d in num[::-1]:
