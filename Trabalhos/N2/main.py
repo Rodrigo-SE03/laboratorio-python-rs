@@ -43,13 +43,19 @@ while True:
     if invalido:
         print("Coordenada inválida!")
         invalido = False
-    if acerto:
+    elif acerto:
         print("Acertou!")
         acerto = False
     else:
         print("Errou!")
     mostrar_tabuleiro(tabuleiro_visivel)
+
+    # "O jogador deve poder fazer tentativas de acertar as embarcações, informando
+    # as coordenadas separadas por espaço (por exemplo, 1 2, 10 5)."
+    # Achei a entrada por somente números confusa, então mudei para entrada por letra e número.
+    # Se for necessário mudar é só mudar a variável "linhas".
     tiro = input("Digite a coordenada do tiro (ex: A1): ")
+    tiro = tiro.replace(" ", "")
     try:
         y = tiro[0].upper()
         x = int(tiro[1:]) - 1
