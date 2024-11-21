@@ -6,6 +6,7 @@ import os
 tabuleiro_inimigo = [[]]
 tabuleiro_visivel = [[]]
 linhas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+# linhas = ['1','2','3','4','5','6','7','8','9','10']
 for i in range(0,10):
     tabuleiro_inimigo.append([])
     tabuleiro_visivel.append([])
@@ -31,29 +32,34 @@ for barco in barcos:
 tabuleiro_inimigo = posicionar_barcos(tabuleiro_inimigo, barcos)
 # ---------------------------------------
 
-# ------Usar para tomar spoiler----------
-# mostrar_tabuleiro(tabuleiro_inimigo)
-# ---------------------------------------
+
 
 # -------Loop principal do jogo-------
 invalido = False
 acerto = False
+start = 0
+hits = [[]]
 while True:
     os.system('cls' if os.name == 'nt' else 'clear')
+
+    # ------Usar para tomar spoiler----------
+    mostrar_tabuleiro(tabuleiro_inimigo)
+    print('--------------------------------')
+    print(total)
+    # ---------------------------------------
+    
     if invalido:
         print("Coordenada inválida!")
         invalido = False
     elif acerto:
         print("Acertou!")
         acerto = False
-    else:
+    elif acerto == False and start != 0:
         print("Errou!")
+    start = 1
+
     mostrar_tabuleiro(tabuleiro_visivel)
 
-    # "O jogador deve poder fazer tentativas de acertar as embarcações, informando
-    # as coordenadas separadas por espaço (por exemplo, 1 2, 10 5)."
-    # Achei a entrada por somente números confusa, então mudei para entrada por letra e número.
-    # Se for necessário mudar é só mudar a variável "linhas".
     tiro = input("Digite a coordenada do tiro (ex: A1): ")
     tiro = tiro.replace(" ", "")
     try:
@@ -66,8 +72,12 @@ while True:
         invalido = True
         continue
     y = linhas.index(y)
-    if tabuleiro_inimigo[y][x] == 1:
+    if [y,x] in hits:
+        invalido = True
+        continue
+    elif tabuleiro_inimigo[y][x] == 1:
         tabuleiro_visivel[y][x] = "X"
+        hits.append([y,x])
         total -= 1
         acerto = True
     else:

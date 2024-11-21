@@ -2,6 +2,7 @@ import random
 
 def mostrar_tabuleiro(tabuleiro):
     linhas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+    # linhas = ['1','2','3','4','5','6','7','8','9','10']
     print('  1 2 3 4 5 6 7 8 9 10')
     for i in range(0, 10):
         print(linhas[i], end=' ')
@@ -12,7 +13,7 @@ def mostrar_tabuleiro(tabuleiro):
 def posicionar_barcos(tabuleiro, barcos):
     for barco, tamanho in barcos.items():
         coincidente = True
-        print('Posicione o', barco)
+        print('Posicione o', barco)  # Para debug do código
         orientacao = random.choice(['v', 'h'])
         if orientacao == 'v':
             while coincidente == True:
